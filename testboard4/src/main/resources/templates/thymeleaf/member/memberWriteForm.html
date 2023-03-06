@@ -1,9 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>Member Registration Form</title>
+	<style>
+		* {margin-left: 10px;}
+	 	form > label {
+	 		display : inline-block;
+	 		/* block 은 줄바꿈 성질이 있음 */
+	 		width: 120px;
+	 	}
+	 	
+	 	form > input {
+	 		padding: 4px;
+	 		margin-bottom: 4px;
+	 	}
+	</style>
 </head>
+
+	<h1> Member Registration Form </h1>
+	
+	<form action="#" th:action="@{/member/memberWriteOk}" th:object="${memberDTO}" method="POST">
+	<!-- 사용자가 입력한 정보들이 memberDTO 에 담겨 action 으로 전송이 됨  -->
+	
+		<label for="name">Name</label>
+		<input type="text" id="name" name="name" th:field="*{name}">
+		<!-- 여기서 name 값이 memberDTO 값에 저장돼서 controller 단으로 넘어 -->
+		<!-- thymeleaf 에서 객체 받을 때는 "$", 객체 안에 field 정보 받을 때는 "*" -->
+		<br>
+		<label for="id">ID</label>
+		<input type="text" id="id" name="id" th:field="*{id}">
+		<br>
+		<label for="phone">Phone</label>
+		<input type="text" id="phone" name="phone" th:field="*{phone}">
+		<br> <br>
+		
+		<input type="submit" value="submit">  <input type="reset" value="reset">
+		
+	</form>
+
 <body>
 
 </body>

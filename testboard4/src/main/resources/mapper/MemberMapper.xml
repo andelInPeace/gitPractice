@@ -4,6 +4,7 @@
 <mapper namespace="com.testboard4.mapper.MemberMapper">
 	
 	<insert id="insertMember" parameterType="MemberDTO">
+	<!-- service.MemberService 의 insertMember 랑 같이 Mapper됨 -->
 		<!-- INSERT INTO member (name, id, phone) VALUES ( '이순신', 'mr.soon', '010-111-2222' ); -->
 		<![CDATA[
 			INSERT INTO member (
@@ -15,8 +16,14 @@
 				, #{id}
 				, #{phone}
 			);
-	]]>
+		]]>
 	</insert>
+	
+	<select id="selectMemberOne" parameterType="int" resultType="MemberDTO">
+		
+		SELECT * FROM member WHERE num=1;
+		
+	</select>
 	 
 	
 </mapper>
