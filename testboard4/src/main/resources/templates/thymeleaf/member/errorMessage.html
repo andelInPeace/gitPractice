@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Error Message</title>
+</head>
+	<body>
+		<!-- 타임리프에서 넘어온 모델 데이터 값을 변수로 사용하려면? -->
+		<!--  1. CDATA 선언  -->
+		<!--  2. default 명시  -->
+		<!--  3. 변수 값 처리를 타임리프 가이드(규칙)에 맞게 작성하여 처리 /*[[ 넘어온 값 ]]*/ -->
+		<!--  4. 뷰페이지가 jsp인 경우는 조금 다르다. 아래의 뷰 페이지는 타임리프(.html)로 사용하는 경우.-->
+		
+		<!-- 첫번째 규칙 : th:inline 선언  -->
+		<script th:inline="javascript">
+
+		/* <![CDATA[ */	
+		
+			const message = /*[[ ${msg} ]]*/ 'default';
+			const url = /*[[ ${url} ]]*/ 'default';
+		
+			alert( message );
+			document.location.href = url;
+	
+		/*]]*/
+		</script>
+	
+	</body>
+</html>

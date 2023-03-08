@@ -21,7 +21,7 @@
 	
 	<select id="selectMemberOne" parameterType="int" resultType="MemberDTO">
 		
-		SELECT * FROM member WHERE num=1;
+		SELECT * FROM member WHERE num=#{num};
 		
 	</select>
 	 
