@@ -101,39 +101,43 @@ public class MemberController {
 	@PostMapping("/member/memberWriteOk")
 	public String insertMember(
 			MemberDTO m1, 
-			Model model) {
+			Model model ) {
 		// form 에서 입력한 값이 여기로 넘어오는데 
 		// 그 때, MemberDTO 개체가 자동으로 생성돼서 그 안에 값이 담겨 넘어오게 해야함 
 		
-		try { // (사용자가 입력한 정보를) 등록처리 
-			// console 에 출력해보기 
+		try {
+			// 등록 처리
 			System.out.println(m1.getName());
 			System.out.println(m1.getId());
 			System.out.println(m1.getPhone());
-			
+			System.out.println("------------------------------");
+
 			memberService.insertMember(m1);
-			// memberService 라는 객체를 사용하기 위해서는 '주입'을 해줘야 함 
-			// Service 단에서 호출함 ... !! 
+			
+			// 등록 안내 메시지 출력
 			model.addAttribute( "msg", "회원 등록이 처리되었습니다. 메인 페이지로 이동합니다." );
 			model.addAttribute( "url", "/" );
-			return "/member/messageAlert";
 			
-		}
-		catch(Exception e) {
+			return "/member/messageAlert";  // messageAlert.html 로 이동 
 			
+		} catch (Exception e) {
+			// err
 		}
+
 		return "redirect:/";
+	
+	}
 		// 사용자의 정보를 받아서 DB 에 입력 (=등록) 처리를 해 주면 됨 
 		
 		// 그냥 return 처리를 하는 것과 redirect 리턴의 차이 
 		// 1. 별 차이는 없다 ... (^^) 
 		// 2. 다만 redirect 의 경우, 다시 한 번 해당 url 로 http 요청을 넣는 형태
 	
-	}	
+
 	
 	// 회원 수정OK
 	
-	@PostMapping("/member/membeUpdateOk")
+	@PostMapping("/member/memberUpdateOk")
 	public String updateMember(
 			MemberDTO m1,
 			HttpServletRequest request,
@@ -154,17 +158,23 @@ public class MemberController {
 			System.out.println(m1.getId());
 			System.out.println(m1.getPhone());
 			System.out.println( "넘어온 번호는 = " + num );
+			System.out.println("------------------------------");
 			
+			memberService.updateMember(m1);
+			
+			// 안내 메시지 및 URL 정보 전달 --> messageAlert.html
+			// 3번 방식 : 특정 페이지로 데이터 값들을(Model 사용) 보내서 출력 
 			model.addAttribute( "msg", "회원 정보가 수정되었습니다. 확인 페이지로 이동합니다." );
-			model.addAttribute( "url", "/member/memberWriteFormNew?num=" + num );
+			model.addAttribute( "url", "/member/memberWriteForm?num=" + num );
 			
-			//memberService.updateMember(m1);
+			
+			return "/member/messageAlert";
 			
 		}
 		catch(Exception e) { 
 			
 		}
-		return "redirect:/member/memberWriteFormNew?num=" + num;
+		return "redirect:/member/memberWriteForm?num=" + num;
 
 	}
 }

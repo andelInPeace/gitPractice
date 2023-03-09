@@ -48,7 +48,8 @@
 			method="POST"
 			id="memberWriteForm">
 		
-		<input type="hidden" name="num" th:value="${num}">
+		<input type="hidden" name="num" th:if="${formTitle}=='Modification'" th:value="${num}">
+		<!-- 등록일 때는 아예 안 나 -->
 		<label for="name">Name</label>
 		<input type="text" id="name" name="name" th:field="*{name}">
 		<!-- 여기서 name 값이 memberDTO 값에 저장돼서 controller 단으로 넘어 -->

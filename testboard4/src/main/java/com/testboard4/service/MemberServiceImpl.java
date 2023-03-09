@@ -29,5 +29,12 @@ public class MemberServiceImpl implements MemberService{
 		
 		return memberMapper.selectMemberOne(num);
 	}
+	
+	@Override
+	public void updateMember(MemberDTO memberDTO) {
+		
+		memberMapper.updateMember(memberDTO);
+		
+	}
 
 }
