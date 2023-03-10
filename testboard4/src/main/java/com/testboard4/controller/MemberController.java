@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import java.util.List;
 
 import com.testboard4.dto.MemberDTO;
 import com.testboard4.service.MemberService;
@@ -24,7 +25,7 @@ public class MemberController {
 	
 	// 회원 등록 Form 페이지 + 회원 수정 form 페이지 
 	
-	@GetMapping("/member/memberWriteForm") //사용자가 입력(요청)
+	@GetMapping("/member/m2emberWriteFormNew") //사용자가 입력(요청)
  	public String memberWriteForm(
 			@RequestParam(value="num", required=false) Integer num,
 			Model model) {
@@ -93,7 +94,7 @@ public class MemberController {
 				model.addAttribute("formTitle", "Registration");
 			}
 		
-		 return "/member/memberWriteForm"; // memberwriteForm.html 호출 
+		 return "/member/m2emberWriteFormNew"; // memberwriteFormNew.html 호출 
 	}
 	
 	// 회원 등록 Ok 
@@ -154,6 +155,7 @@ public class MemberController {
 		
 		try { // (사용자가 입력한 정보를) 등록처리 
 			// console 에 출력해보기 
+			System.out.println("------------------------------");
 			System.out.println(m1.getName());
 			System.out.println(m1.getId());
 			System.out.println(m1.getPhone());
@@ -165,7 +167,7 @@ public class MemberController {
 			// 안내 메시지 및 URL 정보 전달 --> messageAlert.html
 			// 3번 방식 : 특정 페이지로 데이터 값들을(Model 사용) 보내서 출력 
 			model.addAttribute( "msg", "회원 정보가 수정되었습니다. 확인 페이지로 이동합니다." );
-			model.addAttribute( "url", "/member/memberWriteForm?num=" + num );
+			model.addAttribute( "url", "/member/m2emberWriteFormNew?num=" + num );
 			
 			
 			return "/member/messageAlert";
@@ -174,8 +176,24 @@ public class MemberController {
 		catch(Exception e) { 
 			
 		}
-		return "redirect:/member/memberWriteForm?num=" + num;
+		return "redirect:/member/m2emberWriteFormNew?num=" + num;
 
+	}
+	
+	// 회원 리스트 
+	
+	@GetMapping("/member/memberList")
+	public String memberList(Model model) {
+		//가져온 데이터를 Model 에 담아서 Viewpage(html) 로 전달 
+		
+		List<MemberDTO> memberList = memberService.getMemberList();
+		
+		System.out.println(memberList.get(0).toString()); // 1.일레이 
+		
+		// 객체 리스트 전달 : 모델에 담아서 리스트 페이지로 전달 
+		//model.addAttribute("memberList", memberList);
+		
+		return "/member/memberList.html"; //memberList.html 페이지로 리턴 
 	}
 }
 
