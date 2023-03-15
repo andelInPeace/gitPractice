@@ -3,6 +3,7 @@ package com.testboard4.controller;
 import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -188,12 +189,52 @@ public class MemberController {
 		
 		List<MemberDTO> memberList = memberService.getMemberList();
 		
-		System.out.println(memberList.get(0).toString()); // 1.일레이 
+		System.out.println(memberList.get(11).toString()); // num# 3(index=4) 인 데이터 출력 
+		// toString() 메서드는 기본적으로 오버라이딩 하지 않으면 객체의 해시코드가 출력 
+		// 따라서, 객체의 정보를 출력하고자 한다면 toString() 메서드를 MemberDTO에서 오버라이딩 하여 객체의 정보를 문자열 형태로 출력. 
+ 		// 1. 이름, Id, phone ~
+		// otherwise, com.testboard4.dto.memberDTO@~ 가 출력됨 
+		
 		
 		// 객체 리스트 전달 : 모델에 담아서 리스트 페이지로 전달 
-		//model.addAttribute("memberList", memberList);
+		model.addAttribute("memberList", memberList);
 		
-		return "/member/memberList.html"; //memberList.html 페이지로 리턴 
+		return "/member/memberList"; //memberList.html 페이지로 리턴 
+	}
+	
+	// 회원 삭제Ok 
+	// 1. Controller 삭제 구현 (삭제 요청에 대한 매핑 처리, num 변수 처리, 응답 메시지 처리 및 이동 url 전달 처리 등등)
+	// 2. 삭제 시 num값이 null 인지 아닌지 체크 (null 이면 redirect)
+	// 3. 여러 에러 상황을 대비하여 try ... catch 구문 사용
+	// 4. 삭제 처리 후 반환값을 리턴 받아서 --> 게시글 삭제 성공 시 전달할 메시지와 실패 시의 메시지를 각각 전달할 수 있도록 처리 
+	// 5. 삭제 처리 후 반환값 ?? --> row 의 갯수  
+	
+	@GetMapping("/member/memberDeleteOk")
+	public String memberDeleteOk(@RequestParam(value="num", required=false) Integer num, Model model) {
+		// null 체 
+		if(num==null) {
+			System.out.println("nul 입니다.");
+			return "redirect:/member/memberList";
+		}
+		System.out.println("해당 num : " + num);
+		
+		// try ... catch ~
+		try {
+			//삭제에 대한 DB 처리 
+			// 삭제 처리 후 --> 반환 값 리턴 
+			int isOk= memberService.deleteMember(num);
+			System.out.println("isOk = " + isOk);
+		}
+		catch(DataAccessException e) {
+			// DB 처리시 문제가 있나 ? 
+		
+			
+		}
+		catch(Exception e) {
+			// 시스템에 문제가 있나 ? 
+			
+		}
+		return "redirect:/member/messageAlert"; //messageAlert.html
 	}
 }
 

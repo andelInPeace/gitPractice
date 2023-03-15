@@ -35,10 +35,20 @@
 					, id	= #{id}
 					, phone	= #{phone}
 			WHERE
-					  num	= #{num}
+					  num	= #{num};
 	
 		]]>
 	</update>
+	
+	<select id="selectMemberAll" resultType="MemberDTO">
+		
+		<![CDATA[
+			SELECT 
+					*
+			FROM 
+					member;					
+		]]>
+	</select>
 	 
 	
 </mapper>
