@@ -117,8 +117,8 @@ public class MemberController {
 			memberService.insertMember(m1);
 			
 			// 등록 안내 메시지 출력
-			model.addAttribute( "msg", "회원 등록이 처리되었습니다. 메인 페이지로 이동합니다." );
-			model.addAttribute( "url", "/" );
+			model.addAttribute("msg", "회원 등록이 처리되었습니다. 메인 페이지로 이동합니다.");
+			model.addAttribute("url", "/");
 			
 			return "/member/messageAlert";  // messageAlert.html 로 이동 
 			
@@ -189,7 +189,7 @@ public class MemberController {
 		
 		List<MemberDTO> memberList = memberService.getMemberList();
 		
-		System.out.println(memberList.get(11).toString()); // num# 3(index=4) 인 데이터 출력 
+		System.out.println(memberList.get(1).toString()); // num# 3(index=4) 인 데이터 출력 
 		// toString() 메서드는 기본적으로 오버라이딩 하지 않으면 객체의 해시코드가 출력 
 		// 따라서, 객체의 정보를 출력하고자 한다면 toString() 메서드를 MemberDTO에서 오버라이딩 하여 객체의 정보를 문자열 형태로 출력. 
  		// 1. 이름, Id, phone ~
@@ -211,7 +211,7 @@ public class MemberController {
 	
 	@GetMapping("/member/memberDeleteOk")
 	public String memberDeleteOk(@RequestParam(value="num", required=false) Integer num, Model model) {
-		// null 체 
+		// null 인 경우 (삭제 할 거 없는 경우 --> 안 하면 됨) 
 		if(num==null) {
 			System.out.println("nul 입니다.");
 			return "redirect:/member/memberList";
@@ -219,11 +219,29 @@ public class MemberController {
 		System.out.println("해당 num : " + num);
 		
 		// try ... catch ~
+		// 여기가 null 이 아닌 경우라 삭제 해야하는 경우 
 		try {
 			//삭제에 대한 DB 처리 
 			// 삭제 처리 후 --> 반환 값 리턴 
 			int isOk= memberService.deleteMember(num);
 			System.out.println("isOk = " + isOk);
+			
+			// 멤버 삭제 실패 시 처리 구현(메시지 등을 전달)
+			if(isOk!=1) {
+				System.out.println("삭제 실패"); 
+				// return "redirect:/member/memberList"; // 모델로 전달해서 메시지 출력 후 이동 시켜도 됨 
+				// 삭제 실패시 --> 안내 메시지 및 이동 url 정보 전달 
+				model.addAttribute("msg", "삭제 실패. 멤버 리스트로 이동합니다.");
+				model.addAttribute("url", "/member/memberList");
+			} 
+			else {
+				// 삭제 성공 시 (isOk=1)
+				System.out.println("삭제 성공 = " + isOk);
+				
+				// 삭제 성공 시 --> 안내 메시지 및 url 정보를 전달 --> messageAlert.html
+				model.addAttribute("msg", "삭제 상공. 멤버 리스트로 이동합니다.");
+				model.addAttribute("url", "/member/memberList");
+			}
 		}
 		catch(DataAccessException e) {
 			// DB 처리시 문제가 있나 ? 
@@ -234,7 +252,7 @@ public class MemberController {
 			// 시스템에 문제가 있나 ? 
 			
 		}
-		return "redirect:/member/messageAlert"; //messageAlert.html
+		return "/member/messageAlert"; //messageAlert.html
 	}
 }
 

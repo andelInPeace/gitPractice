@@ -8,10 +8,10 @@
 		<script th:inline="javascript">
 		/* <![CDATA[ */	
 		
-			const message = /*[[ ${msg} ]]*/ 'default';
-			const url = /*[[ ${url} ]]*/ 'default';
+			const message = /*[[${msg}]]*/ 'default';
+			const url = /*[[${url}]]*/ 'default';
 			
-			alert( message );
+			alert(message);
 			document.location.href = url;
 		
 		/*]]*/

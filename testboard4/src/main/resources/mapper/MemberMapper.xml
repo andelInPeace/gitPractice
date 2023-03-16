@@ -49,6 +49,16 @@
 					member;					
 		]]>
 	</select>
+	
+	<delete id="deleteMemberOne" parameterType="int">
+		
+		<![CDATA[
+			DELETE FROM 
+					member
+			WHERE 	
+					num = #{num};					
+		]]>
+	</delete>
 	 
 	
 </mapper>
