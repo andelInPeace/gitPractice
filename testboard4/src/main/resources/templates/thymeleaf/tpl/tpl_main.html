@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	
+	<head th:replace="/tpl/tpl_fragments::tpl_head('main page')"/>
+	<!-- <head th:replace="tpl_fragments :: tpl_head"> </head> 도 가능  -->
+	<!--  <head th:replace="/tpl/tpl_fragments::tpl_head(title='main page')"/> -->
+	
+	<!--  
+		<style>
+			ul {list-style: none; margin: 0; padding:0}
+			li {display: inline}
+			a {text-decoration: none;}
+		</style>
+	-->
+	<body>
+	
+		<!-- 
+		<nav class="bg-dark py-2 px-2">
+			<ul>
+				<li><a href="#">Main</a></li>
+				<li><a href="#">Sub</a></li>
+				<li<a href="#">>Member Crud</a></li>
+			</ul>
+		</nav> 
+		-->
+		
+		<header th:replace="/tpl/tpl_fragments::tpl_header"/>
+		<!-- <header th:replace="/tpl/tpl_fragments::tpl_header"></head> 도 가능  -->
+		<div th:replace="/tpl/tpl_fragments::tpl_main_title(val1='Main Page', val2='')" class="container mt-5 mb-5 text-center"> 
+			<!--  <div th:replace="/tpl/tpl_fragments::tpl_main_title('Main Page', '')" 도 가능. -->
+			<h2>Main Page</h2>
+		</div>
+		
+		<footer th:replace="/tpl/tpl_fragments::tpl_footer"> </footer>
+		
+	
+	</body>
+</html>

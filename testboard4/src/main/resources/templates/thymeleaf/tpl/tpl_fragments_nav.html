@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+		<meta http-equiv="refresh" content="10; url=localhost:8024/member/memberList">
+		
+		<!-- Bootstrap CSS  -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+		
+		<title>Top Navigation Menu</title>
+		<!-- <title>[[${title}]]</title>  도 가능  -->
+		
+	</head>
+	<body>
+		
+		<nav class="navbar navbar-dark bg-dark text-light">
+		<!-- navbar-dark 적용하면 사실 text-light 는 적용 안해도 됨.(자동으로 됨)  -->
+			<a class="navbar-brand" href="#">MyWorld.com</a>
+			
+			<div>
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Main</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Sub</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Member CRUD</a></li>
+				</ul>
+			</div>
+		</nav>
+		
+		<!-- jQuery and Bootstrap Bundle(with Popper) -->
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+	</body>
+	
+</html>

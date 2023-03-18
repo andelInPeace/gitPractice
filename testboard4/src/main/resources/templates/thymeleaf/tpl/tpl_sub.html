@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+	<head th:replace="/tpl/tpl_fragments::tpl_head ('sub page')"/>
+	<!-- <head th:replace="/tpl/tpl_fragments::tpl_head (title='sub page')"/> -->
+	
+	<body>
+		
+		<header th:replace="/tpl/tpl_fragments::tpl_header"/>
+		
+		
+		<div th:replace="/tpl/tpl_fragments::tpl_main_title(val1='Sub Page', val2='Event')" class="container mt-5 mb-5 text-center">
+			<h3>Sub Page</h3>
+		</div>
+		
+		
+		<footer th:replace="/tpl/tpl_fragments::tpl_footer"> </footer>
+		
+	</body>
+</html>

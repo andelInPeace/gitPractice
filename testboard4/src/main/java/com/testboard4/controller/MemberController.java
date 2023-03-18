@@ -24,6 +24,7 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	
 	// 회원 등록 Form 페이지 + 회원 수정 form 페이지 
 	
 	@GetMapping("/member/m2emberWriteFormNew") //사용자가 입력(요청)
