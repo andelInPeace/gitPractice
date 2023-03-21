@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	
+	<th:block th:fragment="navbarFragment">
+		
+		 <nav class="navbar navbar-dark bg-dark text-light navbar-expand-md">
+		
+			<a class="navbar-brand" href="#">MyWorld.com</a>
+			<button class="navbar-toggler" type="button" data-toggle="collpase" data-target="#topMenu"> 
+			<!--  data-target : 어떤 것을 접었다 펼쳤다 할 것인지 -->
+			<!--  data-toggle : 클릭하면 어떤 일이 일어나게 할 것인지 -->
+				<span class="navbar-toggler-icon"> </span>
+			</button>
+			
+			<div class="collapse navbar-collapse" id="topMenu">
+			<!--  class="navbar-collapse" 로만 지정 시 메뉴가 펼쳐진 상태로 나옴  -->
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+					<li class="nav-item active"><a class="nav-link" href="/main">Main</a></li>
+					<li class="nav-item"><a class="nav-link" href="/sub">Sub</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Member CRUD</a></li>
+				</ul>
+			</div>
+		</nav> 
+		 
+	</th:block>
+	
+</html>

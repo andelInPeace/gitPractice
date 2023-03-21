@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<th:block th:fragment="scriptFragment">
+		
+		<!--  사이트내에서 공통으로 사용되는 script 파일-->
+		<!--  jQuery and Bootstrap Bundel (with Popper) -->
+		<script src="https://code.jquery.com/jqeury-3.5.1slim.min.js"></script> 
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstra.bundle.min.js"></script>
+		
+		<<!-- th:src 사용 시 -->
+		<!-- <script th:src="@{/js/jquery/jquery.min.js}></script> -->
+		<!-- <scro[t tj:src="@{/js/bootstrap/bootstrap.bundle.min.js}"></script> -->
+		
+		<!--  DataTable -->
+		<!--  <script th:src="@{/js/datatables/jquery.dataTables.js}"></script>-->
+		<!--  <script th:src="@{js/datatables/dataTables.bootstrap4.js}"></script> -->
+	</th:block>
+</html>

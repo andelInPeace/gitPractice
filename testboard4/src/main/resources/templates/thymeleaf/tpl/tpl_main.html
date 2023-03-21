@@ -24,6 +24,8 @@
 		</nav> 
 		-->
 		
+		<nav th:replace="/tpl/tpl_fragments_nav::tpl_nav(naviVal='main')"/> 
+		
 		<header th:replace="/tpl/tpl_fragments::tpl_header"/>
 		<!-- <header th:replace="/tpl/tpl_fragments::tpl_header"></head> 도 가능  -->
 		<div th:replace="/tpl/tpl_fragments::tpl_main_title(val1='Main Page', val2='')" class="container mt-5 mb-5 text-center"> 
